@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <style>
-    /* ===== RESET & VARIÁVEIS ===== */
+    /* ===== RESET & VARIÁVEIS (NOVAS CORES) ===== */
     *, *::before, *::after {
       margin: 0;
       padding: 0;
@@ -17,25 +17,20 @@
     }
 
     :root {
-      --bg: #faf7f2;
-      --bg-gradient: linear-gradient(160deg, #faf7f2 0%, #f5efe8 50%, #f0e8e0 100%);
+      --bg: #fff9f9; /* Rosa muito clarinho / off-white */
+      --bg-gradient: linear-gradient(160deg, #fff9f9 0%, #fdf1f0 50%, #fceceb 100%);
+      --primary: #c49a86; /* Tom nude/areia sofisticado */
+      --primary-hover: #b08673;
+      --text: #4a4040;
+      --text-light: #8a7a7a;
+      --gold: #c49a86;
+      --rose: #f0d5d2;
       --card: #ffffff;
-      --primary: #1a1a1a;
-      --primary-hover: #333333;
-      --text: #2c2c2c;
-      --text-light: #6b6b6b;
-      --gold: #c9a96e;
-      --rose: #e8b4b8;
-      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
-      --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.08);
-      --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.12);
+      --shadow-sm: 0 2px 10px rgba(196, 154, 134, 0.08);
+      --shadow-md: 0 6px 20px rgba(196, 154, 134, 0.15);
       --radius: 16px;
       --radius-full: 9999px;
       --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    html {
-      -webkit-text-size-adjust: 100%;
     }
 
     body {
@@ -49,7 +44,6 @@
       line-height: 1.6;
       padding: 32px 20px 0;
       -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
     }
 
     /* ===== CONTAINER PRINCIPAL ===== */
@@ -64,8 +58,8 @@
     /* ===== AVATAR ===== */
     .avatar-wrapper {
       position: relative;
-      width: 120px;
-      height: 120px;
+      width: 130px;
+      height: 130px;
       margin-bottom: 20px;
     }
 
@@ -87,8 +81,8 @@
 
     .avatar {
       position: relative;
-      width: 120px;
-      height: 120px;
+      width: 130px;
+      height: 130px;
       border-radius: 50%;
       object-fit: cover;
       border: 4px solid var(--bg);
@@ -99,18 +93,18 @@
 
     /* ===== NOME & BIO ===== */
     .name {
-      font-size: 1.35rem;
+      font-size: 1.4rem;
       font-weight: 700;
       letter-spacing: -0.02em;
-      color: var(--primary);
+      color: var(--text);
       margin-bottom: 6px;
       text-align: center;
     }
 
     .username {
       font-size: 0.8rem;
-      font-weight: 500;
-      color: var(--gold);
+      font-weight: 600;
+      color: var(--primary);
       letter-spacing: 0.15em;
       text-transform: uppercase;
       margin-bottom: 14px;
@@ -122,125 +116,96 @@
       color: var(--text-light);
       text-align: center;
       max-width: 340px;
-      margin-bottom: 32px;
+      margin-bottom: 28px;
       line-height: 1.7;
     }
 
-    /* ===== BOTÕES ===== */
+    /* ===== LISTA DE PRODUTOS (NOVO LAYOUT) ===== */
     .links {
       width: 100%;
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 16px; /* Espaço entre os cards */
     }
 
-    .link-btn {
+    /* O Card do Produto */
+    .product-card {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      width: 100%;
-      padding: 17px 24px;
-      background: var(--primary);
-      color: #ffffff;
-      text-decoration: none;
+      background: var(--card);
+      padding: 12px;
       border-radius: var(--radius);
-      font-size: 0.92rem;
-      font-weight: 500;
-      letter-spacing: 0.01em;
       box-shadow: var(--shadow-sm);
+      text-decoration: none;
+      color: var(--text);
       transition: all var(--transition);
-      position: relative;
-      overflow: hidden;
-      border: none;
-      cursor: pointer;
-      -webkit-tap-highlight-color: transparent;
+      border: 1px solid rgba(196, 154, 134, 0.1);
     }
 
-    .link-btn::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent);
-      transition: left 0.6s ease;
-    }
-
-    .link-btn:hover::before {
-      left: 100%;
-    }
-
-    .link-btn:hover {
-      background: var(--primary-hover);
+    .product-card:hover {
       transform: translateY(-2px);
       box-shadow: var(--shadow-md);
     }
 
-    .link-btn:active {
-      transform: translateY(0);
-      box-shadow: var(--shadow-sm);
-    }
-
-    .link-btn .label {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex: 1;
-      min-width: 0;
-      text-align: left;
-    }
-
-    .link-btn .emoji {
-      font-size: 1.1rem;
+    /* Foto do Produto */
+    .product-image {
+      width: 70px;
+      height: 70px;
+      border-radius: 12px;
+      object-fit: cover;
+      background: #fdf1f0;
       flex-shrink: 0;
-      width: 24px;
-      text-align: center;
     }
 
-    .link-btn .text {
+    /* Informações do Produto (Texto) */
+    .product-info {
+      display: flex;
+      flex-direction: column;
+      margin-left: 14px;
+      flex: 1;
+      min-width: 0; /* Evita que o texto quebre o layout */
+    }
+
+    .product-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 4px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
 
-    .link-btn .arrow {
+    .product-price {
       font-size: 0.85rem;
-      opacity: 0.5;
-      transition: all var(--transition);
-      flex-shrink: 0;
-      margin-left: 8px;
+      font-weight: 500;
+      color: var(--text-light);
+      margin-bottom: 8px;
     }
 
-    .link-btn:hover .arrow {
-      opacity: 1;
-      transform: translateX(3px);
-    }
-
-    /* Botão destaque (dourado) */
-    .link-btn.featured {
-      background: linear-gradient(135deg, #b8965a, #d4b87a, #b8965a);
-      color: var(--primary);
+    /* Botão "Ver Oferta" dentro do card */
+    .product-btn {
+      align-self: flex-start;
+      background: var(--primary);
+      color: #fff;
+      padding: 6px 14px;
+      border-radius: var(--radius-full);
+      font-size: 0.75rem;
       font-weight: 600;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      transition: background var(--transition);
     }
 
-    .link-btn.featured:hover {
-      background: linear-gradient(135deg, #a8854a, #c9a96e, #a8854a);
-    }
-
-    .link-btn.featured .arrow {
-      opacity: 0.6;
-    }
-
-    .link-btn.featured:hover .arrow {
-      opacity: 1;
+    .product-card:hover .product-btn {
+      background: var(--primary-hover);
     }
 
     /* ===== DIVISOR ===== */
     .divider {
       width: 40px;
       height: 1px;
-      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      background: linear-gradient(90deg, transparent, var(--primary), transparent);
       margin: 32px auto 24px;
       opacity: 0.6;
     }
@@ -253,41 +218,10 @@
       font-size: 0.72rem;
       color: var(--text-light);
       opacity: 0.7;
-      letter-spacing: 0.02em;
       margin-top: auto;
     }
 
-    /* ===== BADGE ===== */
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 0.68rem;
-      font-weight: 500;
-      color: var(--gold);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-bottom: 10px;
-      padding: 6px 14px;
-      border: 1px solid rgba(201, 169, 110, 0.3);
-      border-radius: var(--radius-full);
-      background: rgba(201, 169, 110, 0.06);
-    }
-
-    .badge-dot {
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      background: var(--gold);
-      animation: pulse 2s ease-in-out infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.3; }
-    }
-
-    /* ===== ANIMAÇÃO DE ENTRADA ===== */
+    /* ===== ANIMAÇÃO ===== */
     .fade-in {
       opacity: 0;
       transform: translateY(12px);
@@ -300,37 +234,15 @@
     .fade-in:nth-child(4) { animation-delay: 0.2s; }
     .fade-in:nth-child(5) { animation-delay: 0.25s; }
     .fade-in:nth-child(6) { animation-delay: 0.3s; }
-    .fade-in:nth-child(7) { animation-delay: 0.35s; }
 
     @keyframes fadeInUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     /* ===== RESPONSIVO ===== */
     @media (max-width: 380px) {
-      body { padding: 24px 16px 0; }
-      .avatar-wrapper, .avatar { width: 100px; height: 100px; }
-      .name { font-size: 1.2rem; }
-      .bio { font-size: 0.85rem; }
-      .link-btn { padding: 15px 18px; font-size: 0.85rem; }
-    }
-
-    @media (min-width: 768px) {
-      body { padding-top: 48px; }
-      .container { max-width: 400px; }
-      .link-btn:hover { transform: translateY(-3px); }
-    }
-
-    /* ===== PREFERÊNCIA POR MOVIMENTO REDUZIDO ===== */
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-      }
+      .product-image { width: 60px; height: 60px; }
+      .product-title { font-size: 0.85rem; }
     }
   </style>
 </head>
@@ -340,14 +252,13 @@
 
     <!-- ===== AVATAR ===== -->
     <div class="avatar-wrapper fade-in">
-      <!-- FOTO REAL DA LINNE -->
+      <!-- Certifique-se que a imagem rosto.png está na raiz do repositório -->
       <img
         class="avatar"
         src="rosto.png"
         alt="Avatar 3D da Linne"
-        width="120"
-        height="120"
-        loading="eager"
+        width="130"
+        height="130"
       />
     </div>
 
@@ -355,56 +266,52 @@
     <h1 class="name fade-in">Linne Indica</h1>
     <p class="username fade-in">@linneindica</p>
 
-    <div class="badge fade-in">
-      <span class="badge-dot"></span>
-      Achadinhos verificados
-    </div>
-
     <p class="bio fade-in">
       Garimpando a Shopee para você parecer caro gastando pouco. 🤖✨
     </p>
 
-    <!-- ===== BOTÕES ===== -->
+    <!-- ===== LISTA DE PRODUTOS ===== -->
     <div class="links">
 
-      <a class="link-btn featured fade-in" href="#" target="_blank" rel="noopener noreferrer">
-        <span class="label">
-          <span class="emoji">💄</span>
-          <span class="text">Gloss Espelhado — R$ 25</span>
-        </span>
-        <span class="arrow">↗</span>
+      <!-- PRODUTO 1 -->
+      <a class="product-card fade-in" href="#" target="_blank" rel="noopener noreferrer">
+        <!-- Substitua a URL abaixo pela foto real do produto -->
+        <img class="product-image" src="https://placehold.co/150x150/fceceb/c49a86?text=Gloss" alt="Foto do Gloss">
+        <div class="product-info">
+          <span class="product-title">Gloss Espelhado Efeito 3D</span>
+          <span class="product-price">R$ 25,00</span>
+          <span class="product-btn">Ver Oferta ↗</span>
+        </div>
       </a>
 
-      <a class="link-btn fade-in" href="#" target="_blank" rel="noopener noreferrer">
-        <span class="label">
-          <span class="emoji">🌸</span>
-          <span class="text">Blush Cremoso — R$ 19</span>
-        </span>
-        <span class="arrow">↗</span>
+      <!-- PRODUTO 2 -->
+      <a class="product-card fade-in" href="#" target="_blank" rel="noopener noreferrer">
+        <img class="product-image" src="https://placehold.co/150x150/fceceb/c49a86?text=Blush" alt="Foto do Blush">
+        <div class="product-info">
+          <span class="product-title">Blush Cremoso Rosé</span>
+          <span class="product-price">R$ 19,00</span>
+          <span class="product-btn">Ver Oferta ↗</span>
+        </div>
       </a>
 
-      <a class="link-btn fade-in" href="#" target="_blank" rel="noopener noreferrer">
-        <span class="label">
-          <span class="emoji">✨</span>
-          <span class="text">Iluminador Premium — R$ 29</span>
-        </span>
-        <span class="arrow">↗</span>
+      <!-- PRODUTO 3 -->
+      <a class="product-card fade-in" href="#" target="_blank" rel="noopener noreferrer">
+        <img class="product-image" src="https://placehold.co/150x150/fceceb/c49a86?text=Iluminador" alt="Foto do Iluminador">
+        <div class="product-info">
+          <span class="product-title">Iluminador Premium Gold</span>
+          <span class="product-price">R$ 29,00</span>
+          <span class="product-btn">Ver Oferta ↗</span>
+        </div>
       </a>
 
-      <a class="link-btn fade-in" href="#" target="_blank" rel="noopener noreferrer">
-        <span class="label">
-          <span class="emoji">💋</span>
-          <span class="text">Kit Lip Tint — R$ 35</span>
-        </span>
-        <span class="arrow">↗</span>
-      </a>
-
-      <a class="link-btn fade-in" href="#" target="_blank" rel="noopener noreferrer">
-        <span class="label">
-          <span class="emoji">🪞</span>
-          <span class="text">Máscara Facial Gold — R$ 22</span>
-        </span>
-        <span class="arrow">↗</span>
+      <!-- PRODUTO 4 -->
+      <a class="product-card fade-in" href="#" target="_blank" rel="noopener noreferrer">
+        <img class="product-image" src="https://placehold.co/150x150/fceceb/c49a86?text=Lip+Tint" alt="Foto do Lip Tint">
+        <div class="product-info">
+          <span class="product-title">Kit Lip Tint Hidratante</span>
+          <span class="product-price">R$ 35,00</span>
+          <span class="product-btn">Ver Oferta ↗</span>
+        </div>
       </a>
 
     </div>
